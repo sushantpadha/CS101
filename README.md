@@ -1,20 +1,30 @@
 # CS101
 
+My submission/practice files for the fall'24 semester course, IITB.
+
+Compile and execute files using `s++` as:
+```bash
+./compandexeccpp.sh <filename>
+```
+
+## `simplecpp`
+[simplecpp](https://www.cse.iitb.ac.in/~ranade/simplecpp/)
+
+[simplecpp.tar](https://www.cse.iitb.ac.in/~ranade/simplecpp/simplecpp.tar)
+
 [Download instructions](https://docs.google.com/document/d/1toxyF__JIN6tsOWcA2UbUCIRsprTC6agWBfGFYo8tUw/edit)
+
 [Install script](https://docs.google.com/document/d/1toxyF__JIN6tsOWcA2UbUCIRsprTC6agWBfGFYo8tUw/edit)
 
-This uses precompiled version available at https://www.cse.iitb.ac.in/~ranade/simplecpp/simplecpp.tar, which works on prescribed Ubuntu version ~~but not WSL~~.
+- I am using WSL for installing this
 
-## Use WSL
-
-## Sys Info
-
+### Sys Info
 ```
 OS: Ubuntu 22.04.4 LTS on Windows 10 x86_64
 Kernel: 5.15.153.1-microsoft-standard-WSL2
 ```
 
-## Fix
+### Fix
 
 Update `sudo apt update -y && sudo apt upgrade -y`
 
@@ -167,10 +177,10 @@ Works!
 
 _No need to clone [source](https://github.com/adi-g15/simplecpp) and `sudo make install`, it doesn't work!_
 
-## Effect
+### Effect
 Installs `s++` and `runs++` in ~/bin and adds it to path, by adding `source ~/.profile_spp`: `export PATH"=$HOME/bin:$PATH"`
 
-## Integrating VS Code
+### Integrating VS Code
 
 Run `code .` in WSL. It will install required packages. WOrks fine.
 
@@ -201,7 +211,7 @@ For code completion, in `/path/to/folder/.vscode/c_cpp_properties` use (replace 
 }
 ```
 
-## TROUBLESHOOTING
+### TROUBLESHOOTING
 
 https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps
 https://github.com/microsoft/wslg/wiki/Diagnosing-%22cannot-open-display%22-type-issues-with-WSLg
