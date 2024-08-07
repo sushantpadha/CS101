@@ -1,6 +1,9 @@
-#include <simplecpp>
+#include <iostream>
+using namespace std;
 
-main_program
-{
-    cout << arctangent(-10/10) << endl;
+int main() {
+    int i = 0;
+    while(i<10){
+	    cout << (++i) << " " << i << " " << (i++) << endl;
+	}
 }
