@@ -7,7 +7,8 @@ if [ $# -ne 1 ]
 fi
 
 cppfile="$1"
-execfile="${cppfile%????}.out"
+# execfile="${cppfile%????}.out"
+execfile="a.out"
 
 echo "Compiling $cppfile as $execfile and running..."
 echo ""
