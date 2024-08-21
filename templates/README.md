@@ -1,0 +1,1 @@
+Link for converting code into snippets: https://snippet-generator.app/?description=&tabtrigger=&snippet=&mode=vscode
