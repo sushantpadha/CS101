@@ -1,20 +1,21 @@
 #include <simplecpp>
 
 main_program {
+    const int num_bits = sizeof(int)*8;
     unsigned int a, b;
     cin >> a >> b;
     unsigned int c = a ^ b;
-    unsigned int _c = c;
-    unsigned int one = 1;
     int count = 0;
-    for (; c > 0; c >>= 1) {
-        if (c & one)
+    // alternate method of counting set bits
+    // rshift d by one and & instead of lshifting c
+    for (int i = 0, d = 1; i < num_bits; i++, d <<= 1) {
+        if (c & d)
             count++;
     }
     cout << count << endl;
 
-    for (int i = 0; _c > 0; _c >>= 1, i++) {
-        if (_c & one)
+    for (int i = 0; c > 0; c >>= 1, i++) {
+        if (c & 1U)
             cout << i << " ";
     }
     cout << endl;

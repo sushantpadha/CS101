@@ -4,31 +4,31 @@ main_program {
     // n: number of bits
     // m: number of codewords
     // k: number of bit flips to tolerate
-    // x: received vector
+    // x: received bitstring
     // <list of ints>: set of known codewords
 
-    unsigned int one = 1;
-    unsigned int n, x, codeword, xorword;
-    int m, k, count;
-    bool done;
+    // to ensure added MSB are set to 0
+    unsigned int x, codeword, xorword;
+    int n, m, k, count;
     cin >> n >> m >> k >> x;
 
     for (int i = 0; i < m; i++) {
         count = 0;
-        done = false;
 
         cin >> codeword;
         xorword = x ^ codeword;
 
-        for (; xorword > 0; xorword >>= 1) {
-            if (xorword & one)
+        // same logic for reading set bits
+        // AND only loop over n LSB
+        for (int j = 0; xorword > 0 && j < n; xorword >>= 1, j++) {
+            if (xorword & 1U)
                 count++;
-            if (count > k) {
-                done = true;
-                break;
-            }
         }
-        if (done) continue;
-        cout << codeword << endl;
+        // can be optimized by adding `done` bool and breaking from for conditionally
+        // but this is shorter and perf is nearly same
+        if (count > k)
+            continue;
+        cout << codeword << " ";
     }
+    cout << endl;
 }
