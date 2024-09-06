@@ -10,8 +10,10 @@ void convertForm(TrigExpression t) {
     double th = atan2(t.b, t.a);
     cout << t.a << "*sin(x) + " << t.b << "*cos(x)" << endl;
     // acc to problem statement only printing theta upto 3 dec places
-    // ! does not match the desired output shown on site but fk it
-    cout << r << "*sin(x + " << fixed << setprecision(3) << th << ")" << endl;
+    // which has been uploaded in mock exam
+    // but output of visible testcases indicates otherwise
+    // this code is in accordance with that
+    cout << r << "*sin(x + " << th << ")" << endl;
 }
 
 int main() {
