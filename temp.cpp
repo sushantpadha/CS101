@@ -1,21 +1,25 @@
-#include <bits/stdc++.h>
-#include <climits>
+#include <iostream>
+
 using namespace std;
 
+#define DEBUG_ENABLED
+#define nl cout << endl
+
+#ifdef DEBUG_ENABLED
+#define DBG(x) cout << #x << "=" << x << " "
+#else
+#define DBG(X)
+#endif
+
 int main() {
-    ios_base::sync_with_stdio(false);  // prevents sync C++ streams w C streams
-    cin.tie(NULL);                     // disables flushing of cout before reading cin
+    int x = 3;
+    int y = x*x;
 
-    // unsigned int n;
-    // char c;
-    // c = -127;
-    // n = c;
-    // cout << n << ';' << c << '\n';
-    // cout << true + UINT32_MAX + c << '\n';
+    cout << "This is line: " << __LINE__ << " at time: " << __TIME__ << " on date: " << __DATE__ << " in file: " __FILE__ << endl;
 
-    unsigned int n;
-    cin >> n;
-    cout << n << '\n';
+    DBG(x); nl;
+    DBG(y-1); nl;
 
     return 0;
 }
+
