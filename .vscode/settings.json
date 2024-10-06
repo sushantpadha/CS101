@@ -112,7 +112,9 @@
     "thread": "cpp",
     "cinttypes": "cpp",
     "typeinfo": "cpp",
-    "charconv": "cpp"
+    "charconv": "cpp",
+    "barrier": "cpp",
+    "latch": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
