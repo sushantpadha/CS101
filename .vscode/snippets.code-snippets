@@ -51,5 +51,20 @@
 			""
 		],
 		"description": "template for simplecpp"
+	},
+	"macro for debug": {
+		"prefix": "dbg",
+		"body": [
+			"#define __DBG_ENABLED",
+			"",
+			"#ifdef __DBG_ENABLED",
+			"#define dbg(x) cout << #x << \"=\" << x << \" \"",
+			"#define nl cout << '\\n'",
+			"#undef __DBG_ENABLED",
+			"#else",
+			"#define dbg(x)",
+			"#define nl",
+			"#endif"
+		]
 	}
 }
