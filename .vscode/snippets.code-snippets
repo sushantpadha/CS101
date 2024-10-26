@@ -15,6 +15,23 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
+	"template for cs101": {
+		"prefix": "cs101",
+		"body": [
+			"#include<iostream>",
+			"// #include<iomanip>",
+			"// #include<string>",
+			"// #include<algorithm>",
+			"",
+			"using namespace std;",
+			"",
+			"int main() {",
+			"\t$1",
+			"}",
+			""
+		],
+		"description": "template for cs101"
+	},
 	"template for fast io": {
 		"prefix": "fastio",
 		"body": [

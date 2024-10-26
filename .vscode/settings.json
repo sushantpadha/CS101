@@ -114,7 +114,12 @@
     "typeinfo": "cpp",
     "charconv": "cpp",
     "barrier": "cpp",
-    "latch": "cpp"
+    "latch": "cpp",
+    "bitset": "cpp",
+    "regex": "cpp",
+    "complex": "cpp",
+    "ranges": "cpp",
+    "scoped_allocator": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
