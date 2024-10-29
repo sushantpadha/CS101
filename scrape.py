@@ -43,7 +43,7 @@ if len(sys.argv) != 2:
 # Retrieve lecture number n from command-line arguments
 n = int(sys.argv[1])
 fmtd_n = f"{n:02}"
-assert n > 0
+assert 99 >= n >= 1
 
 # Fill in placeholders and check if directory exists else create
 PDF_FOLDER = PDF_FOLDER(fmtd_n)
