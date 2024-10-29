@@ -23,12 +23,13 @@ lecture pdfs, and lecture code files.
 PDF_FOLDER = lambda n: '/mnt/d/Notes/notes/CS101/'
 CODE_FOLDER = lambda n: f"{n}/"
 
-# * checks for existence in "BASE_URL/n-html"
-# * downloads pdf from "BASE_URL/n.pdf" as "PDF_DL_DIR/n.pdf"
+# * checks for existence in "PDF_BASE_URL/n-html"
+# * downloads pdf from "PDF_BASE_URL/n.pdf" as "PDF_DL_DIR/n.pdf"
 # * checks for corressponding c,cpp,h,hpp files in "LECTURES_URL/"
-# * downloads c,cpp,h,hpp files from "BASE_URL/n-progs/<filename>.<ext>" as "CODE_DL_DIR/<filename>.<ext>"
+# * downloads c,cpp,h,hpp files from "CODE_BASE_URL/n-progs/<filename>.<ext>" as "CODE_DL_DIR/<filename>.<ext>"
 
-BASE_URL = 'https://www.cse.iitb.ac.in/~cs101/lectures/'
+PDF_BASE_URL = 'https://www.cse.iitb.ac.in/~cs101/lectures/'
+CODE_BASE_URL = 'https://www.cse.iitb.ac.in/~cs101/'
 # hidden link i found by creating a raw request (without js exec)
 LECTURES_URL = 'https://www.cse.iitb.ac.in/~cs101/lectureList.html'
 
@@ -79,8 +80,7 @@ except requests.RequestException as e:
 
 # Step 1: Download n.pdf into PDF_DL_DIR
 pdf_path = os.path.join(PDF_FOLDER, f"{fmtd_n}.pdf")
-pdf_url = urljoin(BASE_URL, f"{fmtd_n}.pdf")
-
+pdf_url = urljoin(PDF_BASE_URL, f"{fmtd_n}.pdf")
 if not os.path.exists(pdf_path):
     try:
         print(f"Downloading {pdf_url}...")
@@ -115,13 +115,24 @@ try:
     
     # Download each code file from the corresponding n-progs folder
     for code_file in code_files:
-        code_url = urljoin(BASE_URL, code_file)
+        code_url = urljoin(CODE_BASE_URL, code_file)
         code_filename = os.path.basename(code_file)
         code_file_path = os.path.join(CODE_FOLDER, code_filename)
         
         if not os.path.exists(code_file_path):
             print(f"Downloading {code_url}...")
             code_response = requests.get(code_url, headers=headers, stream=True)
+
+            # Check for redirection
+            if code_response.history:
+                print(f"> Redirection occurred for {code_url}:")
+                for resp in code_response.history:
+                    print(f"> - {resp.status_code} {resp.url}")
+                print(f"> Final destination: {code_response.status_code} {code_response.url}")
+                print("> Skipping this file!")
+                print()
+                continue
+
             code_response.raise_for_status()
             
             # Save each .cpp file
