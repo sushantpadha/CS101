@@ -4,14 +4,29 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
-# * downloads pdf as "PDF_DL_DIR/n.pdf"
-# * downloads c,cpp,h,hpp files as "CODE_DL_DIR/<filename>.<ext>"
+""" INSTRUCTIONS
+
+- Install libraries with: pip install requests beautifulsoup4
+
+- Change PDF_FOLDER and CODE_FOLDER x lines below to wherever you wish to download
+lecture pdfs, and lecture code files.
+
+  You can use {n} in the name to act as a placeholder as in the n-th lecture.
+
+  Folder path should be given relative to wherever the code is being run.
+
+  If you're running it inside WSL make sure to Unix-style paths to access even non-WSL locations
+
+- Run the script once to see sample usage
+"""
 
 PDF_FOLDER = lambda n: '/mnt/d/Notes/notes/CS101/'
 CODE_FOLDER = lambda n: f"{n}/"
 
-# * checks for existence in BASE_URL/n-html
-# * downloads c,cpp,h,hpp files from BASE_URL/n-progs/<filename>.<ext>
+# * checks for existence in "BASE_URL/n-html"
+# * downloads pdf from "BASE_URL/n.pdf" as "PDF_DL_DIR/n.pdf"
+# * checks for corressponding c,cpp,h,hpp files in "LECTURES_URL/"
+# * downloads c,cpp,h,hpp files from "BASE_URL/n-progs/<filename>.<ext>" as "CODE_DL_DIR/<filename>.<ext>"
 
 BASE_URL = 'https://www.cse.iitb.ac.in/~cs101/lectures/'
 # hidden link i found by creating a raw request (without js exec)
