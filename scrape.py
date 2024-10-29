@@ -41,11 +41,12 @@ if len(sys.argv) != 2:
 
 # Retrieve lecture number n from command-line arguments
 n = int(sys.argv[1])
+fmtd_n = f"{n:02}"
 assert n > 0
 
 # Fill in placeholders and check if directory exists else create
-PDF_FOLDER = PDF_FOLDER(n)
-CODE_FOLDER = CODE_FOLDER(n)
+PDF_FOLDER = PDF_FOLDER(fmtd_n)
+CODE_FOLDER = CODE_FOLDER(fmtd_n)
 
 os.makedirs(PDF_FOLDER, exist_ok=True)
 os.makedirs(CODE_FOLDER, exist_ok=True)
@@ -66,19 +67,19 @@ try:
 
     for link in lecture_soup.find_all('a', href=True):
         href = link['href']
-        if href.endswith(f"lectures/{n}-html"):
+        if href.endswith(f"lectures/{fmtd_n}-html"):
             found = True
     
     if not found:
-        print(f"Lecture {n} was not found! Exiting.")
+        print(f"Lecture {fmtd_n} was not found! Exiting.")
         sys.exit(2)
 
 except requests.RequestException as e:
-    print(f"Failed to access {LECTURES_URL} to check for existence of lecture {n}: {e}")
+    print(f"Failed to access {LECTURES_URL} to check for existence of lecture {fmtd_n}: {e}")
 
 # Step 1: Download n.pdf into PDF_DL_DIR
-pdf_path = os.path.join(PDF_FOLDER, f"{n}.pdf")
-pdf_url = urljoin(BASE_URL, f"{n}.pdf")
+pdf_path = os.path.join(PDF_FOLDER, f"{fmtd_n}.pdf")
+pdf_url = urljoin(BASE_URL, f"{fmtd_n}.pdf")
 
 if not os.path.exists(pdf_path):
     try:
@@ -90,7 +91,7 @@ if not os.path.exists(pdf_path):
             for chunk in pdf_response.iter_content(chunk_size=1024):
                 if chunk:
                     pdf_file.write(chunk)
-        print(f"Downloaded {n}.pdf to {pdf_path}")
+        print(f"Downloaded {fmtd_n}.pdf to {pdf_path}")
 
     except requests.RequestException as e:
         print(f"Failed to download {pdf_url}: {e}")
@@ -109,7 +110,7 @@ try:
     code_files = []
     for link in lecture_soup.find_all('a', href=True):
         href = link['href']
-        if href.startswith(f"lectures/{n}-progs/") and href.endswith(CODE_FILE_EXTS):
+        if href.startswith(f"lectures/{fmtd_n}-progs/") and href.endswith(CODE_FILE_EXTS):
             code_files.append(href)
     
     # Download each code file from the corresponding n-progs folder
