@@ -84,8 +84,8 @@ int main(int argc, char** argv) {
 	}
 	int N = std::stoi(argv[1]);
 	board b(N,500);
-	cout << "Click to start the animation." << endl;
-	getClick();
+	// cout << "Click to start the animation." << endl;
+	// getClick();
 	char x, y;
 	for(cin >> x >> y; cin; cin >> x >> y) {
 		int i = x-'a', j = y-'1';
