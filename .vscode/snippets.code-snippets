@@ -72,16 +72,13 @@
 	"macro for debug": {
 		"prefix": "dbg",
 		"body": [
-			"#define __DBG_ENABLED",
+			"#define _MY_DBG_FLAG_ 0",
 			"",
-			"#ifdef __DBG_ENABLED",
-			"#define dbg(x) cout << #x << \"=\" << x << \" \"",
-			"#define nl cout << '\\n'",
-			"#undef __DBG_ENABLED",
-			"#else",
-			"#define dbg(x)",
-			"#define nl",
-			"#endif"
+			"#define LOG if(_MY_DBG_FLAG_) std::cerr",
+			"#define DBG(x) LOG << #x << \"=\" << x << \" \"",
+			"#define NL LOG << '\\n'",
+			"",
+			"#undef _MY_DBG_FLAG_"
 		]
 	}
 }
