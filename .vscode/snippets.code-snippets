@@ -69,16 +69,57 @@
 		],
 		"description": "template for simplecpp"
 	},
-	"macro for debug": {
-		"prefix": "dbg",
+	"debug_macros": {
+		"prefix": "debug_macros",
 		"body": [
-			"#define _MY_DBG_FLAG_ 0",
+			"#define DEBUG 1",
 			"",
-			"#define LOG if(_MY_DBG_FLAG_) std::cerr",
-			"#define DBG(x) LOG << #x << \"=\" << x << \" \"",
+			"#if DEBUG",
+			"    #define LOG std::cerr",
+			"#else",
+			"    #define LOG if (false) std::cerr",
+			"#endif",
+			"",
+			"#define DBG(x) LOG << #x << \" = \" << (x) << \" \"",
 			"#define NL LOG << '\\n'",
+			""
+		],
+		"description": "Debug Macros for printing variables LOG for debug mode"
+	},
+	"debug_macros_containers": {
+		"prefix": "debug_macros_containers",
+		"body": [
+			"// overloading ostream to print containers with commas",
+			"template<typename T>",
+			"std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {",
+			"    os << \"[\";",
+			"    for (auto it = v.begin(); it != v.end(); ++it) os << (it != v.begin() ? \", \" : \"\") << *it;",
+			"    return os << \"]\";",
+			"}",
 			"",
-			"#undef _MY_DBG_FLAG_"
-		]
+			"template<typename T, size_t N>",
+			"std::ostream& operator<<(std::ostream& os, const std::array<T, N>& arr) {",
+			"    os << \"[\";",
+			"    for (size_t i = 0; i < N; ++i) os << (i ? \", \" : \"\") << arr[i];",
+			"    return os << \"]\";",
+			"}",
+			"",
+			"template<typename T>",
+			"std::ostream& operator<<(std::ostream& os, const std::set<T>& s) {",
+			"    os << \"{\";",
+			"    for (auto it = s.begin(); it != s.end(); ++it) os << (it != s.begin() ? \", \" : \"\") << *it;",
+			"    return os << \"}\";",
+			"}",
+			"",
+			"template<typename K, typename V>",
+			"std::ostream& operator<<(std::ostream& os, const std::map<K, V>& m) {",
+			"    os << \"{\";",
+			"    for (auto it = m.begin(); it != m.end(); ++it) os << (it != m.begin() ? \", \" : \"\") << it->first << \": \" << it->second;",
+			"    return os << \"}\";",
+			"}",
+			""
+		],
+		"description": "Debug Macros for printing containers by overloading ostream"
+
 	}
 }
