@@ -2,10 +2,17 @@
 
 My submission/practice files for the fall'24 semester course, IITB.
 
-Compile and execute files using `s++` as:
+Compile files using `s++` as:
 ```bash
-./compandexeccpp.sh <filename>
+s++ <filename>
 ```
+
+Or, alternatively pass the following arguments to `g++` (assuming `X11` and other dependencies installed properly using the [script](./download-and-install-s++.sh))
+```bash
+-Wall /<install-dir>/simplecpp/lib/libsprite.a -I/<install-dir>/simplecpp/include -I/usr/include/X11 -L/usr/X11R6/lib -lX11 -std=c++11
+```
+
+If installing using the script, `<install-dir>` is `/home/<username>`
 
 ## `simplecpp`
 [simplecpp](https://www.cse.iitb.ac.in/~ranade/simplecpp/)
@@ -15,6 +22,8 @@ Compile and execute files using `s++` as:
 [Download instructions](https://docs.google.com/document/d/1toxyF__JIN6tsOWcA2UbUCIRsprTC6agWBfGFYo8tUw/edit)
 
 [Install script](https://docs.google.com/document/d/1toxyF__JIN6tsOWcA2UbUCIRsprTC6agWBfGFYo8tUw/edit)
+
+[Local Version](./download-and-install-s++.sh)
 
 - I am using WSL for installing this
 
@@ -60,8 +69,8 @@ For code completion, in `/path/to/folder/.vscode/c_cpp_properties` use (replace 
       "intelliSenseMode": "linux-gcc-x64",
       "compilerArgs": [
         // <===
-        "-Wall /home/<username>/simplecpp/lib/libsprite.a",
-        "-I/home/<username>/simplecpp/include",
+        "-Wall /<install-dir>/simplecpp/lib/libsprite.a",
+        "-I/<install-dir>/simplecpp/include",
         "-I/usr/include/X11",
         "-L/usr/X11R6/lib",
         "-lX11",
